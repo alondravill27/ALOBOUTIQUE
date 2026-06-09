@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
-
+using ALOBOUTIQUE.Views;
+using ALOBOUTIQUE.ViewModels;
 
 namespace ALOBOUTIQUE
 {
@@ -10,7 +11,6 @@ namespace ALOBOUTIQUE
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
-               
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("MaterialIcons-Regular.ttf", "MaterialIcons");
@@ -23,8 +23,19 @@ namespace ALOBOUTIQUE
                     fonts.AddFont("CormorantGaramond-BoldItalic.ttf", "CormorantGaramond-BoldItalic");
                 });
 
-    		builder.Logging.AddDebug();
+            // 1. REGISTRO DE VIEWMODELS
+            builder.Services.AddSingleton<PosViewModel>();
+            builder.Services.AddSingleton<CustomersViewModel>();
+            // builder.Services.AddSingleton<InventoryViewModel>(); // Descomenta cuando crees la clase
+            // builder.Services.AddSingleton<HistoryViewModel>(); // Descomenta cuando crees la clase
 
+            // 2. REGISTRO DE VISTAS (PÁGINAS)
+            builder.Services.AddSingleton<PosPage>();
+            builder.Services.AddSingleton<CustomersPage>();
+            // builder.Services.AddSingleton<InventoryPage>(); // Descomenta cuando crees el XAML
+            // builder.Services.AddSingleton<HistoryPage>(); // Descomenta cuando crees el XAML
+
+            builder.Logging.AddDebug();
 
             return builder.Build();
         }

@@ -13,23 +13,14 @@
         <vm:PosViewModel/>
     </ContentPage.BindingContext>
 
-    <!-- ═══════════════════════════════════════════════════
-         LAYOUT PRINCIPAL: Rail | Sidebar | Centro | Derecha
-         En tablet < 900px el panel derecho se oculta y
-         se abre como BottomSheet al presionar "Ver venta"
-    ═══════════════════════════════════════════════════ -->
     <Grid ColumnDefinitions="52,*" RowDefinitions="*">
 
-        <!-- ──────────────────────────────────────────────
-             COLUMNA 0: ICON RAIL
-        ─────────────────────────────────────────────── -->
         <Grid
             Grid.Column="0"
             RowDefinitions="Auto,*,Auto"
             BackgroundColor="{StaticResource PinkGhost}"
             Padding="6,10">
 
-            <!-- Logo / Brand mini -->
             <Label
                 Grid.Row="0"
                 Text="A"
@@ -39,7 +30,6 @@
                 HorizontalOptions="Center"
                 Margin="0,4,0,10"/>
 
-            <!-- Nav icons -->
             <VerticalStackLayout Grid.Row="1" Spacing="4">
 
                 <Border Style="{StaticResource NavItemActiveStyle}"
@@ -48,6 +38,9 @@
                     <Label Text="&#xf291;" FontFamily="MaterialIcons"
                            FontSize="20" TextColor="{StaticResource PinkDeep}"
                            HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnPosNavTapped"/>
+                    </Border.GestureRecognizers>
                 </Border>
 
                 <Border Style="{StaticResource NavItemStyle}"
@@ -56,6 +49,9 @@
                     <Label Text="&#xf02a;" FontFamily="MaterialIcons"
                            FontSize="20" TextColor="{StaticResource TextMuted}"
                            HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnHistorialNavTapped"/>
+                    </Border.GestureRecognizers>
                 </Border>
 
                 <Border Style="{StaticResource NavItemStyle}"
@@ -64,6 +60,9 @@
                     <Label Text="&#xe8f4;" FontFamily="MaterialIcons"
                            FontSize="20" TextColor="{StaticResource TextMuted}"
                            HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnApartadosNavTapped"/>
+                    </Border.GestureRecognizers>
                 </Border>
 
                 <Border Style="{StaticResource NavItemStyle}"
@@ -72,6 +71,9 @@
                     <Label Text="&#xe8d1;" FontFamily="MaterialIcons"
                            FontSize="20" TextColor="{StaticResource TextMuted}"
                            HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnInventarioNavTapped"/>
+                    </Border.GestureRecognizers>
                 </Border>
 
                 <Border Style="{StaticResource NavItemStyle}"
@@ -81,9 +83,7 @@
                         FontSize="20" TextColor="{StaticResource TextMuted}"
                         HorizontalOptions="Center" VerticalOptions="Center"/>
                     <Border.GestureRecognizers>
-                        
                         <TapGestureRecognizer Tapped="OnClientesNavTapped"/>
-                        
                     </Border.GestureRecognizers>
                 </Border>
 
@@ -95,11 +95,13 @@
                     <Label Text="&#xe8cc;" FontFamily="MaterialIcons"
                            FontSize="20" TextColor="{StaticResource TextMuted}"
                            HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnPekaClubNavTapped"/>
+                    </Border.GestureRecognizers>
                 </Border>
 
             </VerticalStackLayout>
 
-            <!-- Avatar cajera (bottom) -->
             <Border Grid.Row="2"
                     Style="{StaticResource AvatarStyle}"
                     HorizontalOptions="Center"
@@ -113,23 +115,16 @@
 
         </Grid>
 
-        <!-- ──────────────────────────────────────────────
-             COLUMNA 1: SIDEBAR + CENTRO + DERECHA
-        ─────────────────────────────────────────────── -->
         <Grid
             Grid.Column="1"
             ColumnDefinitions="180,*,Auto"
             RowDefinitions="*">
 
-            <!-- ══════════════════════════════════
-                 SIDEBAR
-            ══════════════════════════════════ -->
             <Grid
                 Grid.Column="0"
                 RowDefinitions="Auto,*,Auto"
                 BackgroundColor="{StaticResource PinkGhost}">
 
-                <!-- Header sidebar -->
                 <VerticalStackLayout Grid.Row="0"
                     Padding="14,14,14,10"
                     Spacing="2">
@@ -140,13 +135,11 @@
                     <BoxView Style="{StaticResource DividerStyle}" Margin="0,6,0,0"/>
                 </VerticalStackLayout>
 
-                <!-- Navegación -->
                 <ScrollView Grid.Row="1">
                     <VerticalStackLayout Padding="10,8" Spacing="2">
 
                         <Label Text="Ventas" Style="{StaticResource SectionLabelStyle}" Margin="4,0,0,4"/>
 
-                        <!-- POS activo -->
                         <Border Style="{StaticResource NavItemActiveStyle}">
                             <HorizontalStackLayout Spacing="8">
                                 <Label Text="&#xf291;" FontFamily="MaterialIcons"
@@ -180,7 +173,6 @@
                                        FontSize="11" FontAttributes="Bold"
                                        TextColor="{StaticResource TextMain}"
                                        VerticalOptions="Center"/>
-                                <!-- Dot notificación -->
                                 <Ellipse Fill="{StaticResource PinkDark}"
                                          WidthRequest="7" HeightRequest="7"
                                          VerticalOptions="Center"/>
@@ -232,7 +224,6 @@
                     </VerticalStackLayout>
                 </ScrollView>
 
-                <!-- Stats + cajera -->
                 <VerticalStackLayout Grid.Row="2" Padding="10,0,10,12" Spacing="5">
 
                     <Border Style="{StaticResource CardStyle}" Padding="10,8">
@@ -269,7 +260,6 @@
                         </Grid>
                     </Border>
 
-                    <!-- Cajera -->
                     <Border Style="{StaticResource CardStyle}" Padding="9">
                         <HorizontalStackLayout Spacing="8">
                             <Border Style="{StaticResource AvatarStyle}">
@@ -293,15 +283,11 @@
 
             </Grid>
 
-            <!-- ══════════════════════════════════
-                 PANEL CENTRAL: CATÁLOGO
-            ══════════════════════════════════ -->
             <Grid
                 Grid.Column="1"
                 RowDefinitions="Auto,Auto,*,Auto"
                 BackgroundColor="{StaticResource White}">
 
-                <!-- Header centro -->
                 <Grid Grid.Row="0"
                       ColumnDefinitions="*,Auto,Auto"
                       Padding="18,14,18,10">
@@ -322,7 +308,6 @@
                             Command="{Binding AddToCartCommand}"/>
                 </Grid>
 
-                <!-- Filtros + búsqueda -->
                 <Grid Grid.Row="1"
                       ColumnDefinitions="*,Auto"
                       Padding="18,4,18,8">
@@ -358,7 +343,6 @@
                         </HorizontalStackLayout>
                     </ScrollView>
 
-                    <!-- Búsqueda -->
                     <Border Grid.Column="1"
                             Style="{StaticResource CardStyle}"
                             Padding="10,6"
@@ -376,7 +360,6 @@
 
                 </Grid>
 
-                <!-- Grid de productos -->
                 <CollectionView
                     Grid.Row="2"
                     ItemsSource="{Binding FilteredProducts}"
@@ -395,7 +378,6 @@
                                     Margin="0,0,0,2">
                                 <Grid RowDefinitions="72,Auto">
 
-                                    <!-- Imagen / ícono producto -->
                                     <Border Grid.Row="0"
                                             BackgroundColor="{Binding IconBg}"
                                             StrokeShape="RoundRectangle 12,12,0,0"
@@ -407,13 +389,8 @@
                                                TextColor="{StaticResource PinkPrimary}"
                                                HorizontalOptions="Center"
                                                VerticalOptions="Center"/>
-                                        <!-- Badge (nuevo / low / sale) -->
-                                        <Border.GestureRecognizers>
-                                            <TapGestureRecognizer/>
-                                        </Border.GestureRecognizers>
                                     </Border>
 
-                                    <!-- Info producto -->
                                     <VerticalStackLayout Grid.Row="1" Padding="9,6,9,10" Spacing="2">
                                         <Label Text="{Binding Category}"
                                                Style="{StaticResource SectionLabelStyle}"/>
@@ -447,379 +424,200 @@
                             </Border>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
-                </CollectionView>
+            </Grid>
 
-                <!-- Status bar -->
-                <Border Grid.Row="3"
+            <Border Grid.Row="3"
                         BackgroundColor="{StaticResource White}"
                         StrokeShape="Rectangle"
                         Stroke="{StaticResource BorderSoft}"
                         StrokeThickness="1"
                         Padding="14,0"
                         HeightRequest="28">
-                    <HorizontalStackLayout Spacing="16" VerticalOptions="Center">
-                        <HorizontalStackLayout Spacing="5">
-                            <Ellipse Style="{StaticResource StatusDotStyle}"/>
-                            <Label Text="{Binding StatusConnection}"
+                <HorizontalStackLayout Spacing="16" VerticalOptions="Center">
+                    <HorizontalStackLayout Spacing="5">
+                        <Ellipse Style="{StaticResource StatusDotStyle}"/>
+                        <Label Text="{Binding StatusConnection}"
                                    Style="{StaticResource CaptionStyle}"
                                    VerticalOptions="Center"/>
-                        </HorizontalStackLayout>
-                        <Label Text="&#xf022;" FontFamily="MaterialIcons"
+                    </HorizontalStackLayout>
+                    <Label Text="&#xf022;" FontFamily="MaterialIcons"
                                FontSize="13" TextColor="{StaticResource TextMuted}"
                                VerticalOptions="Center"/>
-                        <Label Text="Impresora lista"
+                    <Label Text="Impresora lista"
                                Style="{StaticResource CaptionStyle}"
                                VerticalOptions="Center"/>
-                        <Label Text="&#xe227;" FontFamily="MaterialIcons"
+                    <Label Text="&#xe227;" FontFamily="MaterialIcons"
                                FontSize="13" TextColor="{StaticResource TextMuted}"
                                VerticalOptions="Center"/>
-                        <Label Text="{Binding CashDrawerLabel}"
+                    <Label Text="{Binding CashDrawerLabel}"
                                Style="{StaticResource CaptionStyle}"
                                VerticalOptions="Center"/>
-                        <Label Style="{StaticResource CaptionStyle}"
+                    <Label Style="{StaticResource CaptionStyle}"
                                Text="{Binding ShiftLabel}"
                                HorizontalOptions="EndAndExpand"
                                VerticalOptions="Center"/>
-                    </HorizontalStackLayout>
-                </Border>
+                </HorizontalStackLayout>
+            </Border>
 
-            </Grid>
+        </Grid>
 
-            <!-- ══════════════════════════════════
-                 PANEL DERECHO: VENTA ACTIVA
-            ══════════════════════════════════ -->
-            <Grid
+        <Grid
                 Grid.Column="2"
                 WidthRequest="300"
                 RowDefinitions="Auto,*,Auto,Auto"
                 BackgroundColor="{StaticResource White}">
 
-                <!-- ── Header: tabs + orden + cliente ── -->
-                <VerticalStackLayout Grid.Row="0"
-                    Padding="14,14,14,10"
-                    Spacing="8">
+            <VerticalStackLayout Grid.Row="0" Padding="14,14,14,10" Spacing="8">
 
-                    <!-- Tabs Venta / Apartado / Envío -->
-                    <Grid ColumnDefinitions="*,*,*" ColumnSpacing="4">
-                        <Button Grid.Column="0" Text="Venta"
+                <Grid ColumnDefinitions="*,*,*" ColumnSpacing="4">
+                    <Button Grid.Column="0" Text="Venta"
                                 Style="{StaticResource TabButtonActiveStyle}"
                                 Command="{Binding SetModeCommand}"
                                 CommandParameter="Venta"/>
-                        <Button Grid.Column="1" Text="Apartado"
+                    <Button Grid.Column="1" Text="Apartado"
                                 Style="{StaticResource TabButtonStyle}"
                                 Command="{Binding SetModeCommand}"
                                 CommandParameter="Apartado"/>
-                        <Button Grid.Column="2" Text="Envío"
+                    <Button Grid.Column="2" Text="Envío"
                                 Style="{StaticResource TabButtonStyle}"
                                 Command="{Binding SetModeCommand}"
                                 CommandParameter="Envío"/>
-                    </Grid>
+                </Grid>
 
-                    <!-- Número de venta -->
-                    <Grid ColumnDefinitions="*,Auto,Auto,Auto">
-                        <VerticalStackLayout Grid.Column="0" Spacing="1">
-                            <Label Text="{Binding OrderTitle}"
+                <Grid ColumnDefinitions="*,Auto,Auto,Auto">
+                    <VerticalStackLayout Grid.Column="0" Spacing="1">
+                        <Label Text="{Binding OrderTitle}"
                                    Style="{StaticResource SubtitleStyle}"/>
-                            <Label Text="{Binding OrderMeta}"
+                        <Label Text="{Binding OrderMeta}"
                                    Style="{StaticResource CaptionStyle}"/>
-                        </VerticalStackLayout>
-                        <Button Grid.Column="1"
-                                Text="&#xe8ad;" FontFamily="MaterialIcons"
-                                Style="{StaticResource IconButtonStyle}"
-                                Margin="0,0,4,0"/>
-                        <Button Grid.Column="2"
-                                Text="&#xe5d4;" FontFamily="MaterialIcons"
-                                Style="{StaticResource IconButtonStyle}"
-                                Margin="0,0,4,0"/>
-                        <Button Grid.Column="3"
-                                Text="&#xe5cd;" FontFamily="MaterialIcons"
-                                Style="{StaticResource IconButtonStyle}"
-                                Command="{Binding ClearCartCommand}"/>
-                    </Grid>
-
-                    <!-- Cliente -->
-                    <Border Style="{StaticResource CardPinkStyle}">
-                        <Grid ColumnDefinitions="Auto,*,Auto">
-                            <Label Grid.Column="0"
-                                   Text="&#xe7fd;" FontFamily="MaterialIcons"
-                                   FontSize="20" TextColor="{StaticResource PinkDark}"
-                                   VerticalOptions="Center"
-                                   Margin="0,0,8,0"/>
-                            <VerticalStackLayout Grid.Column="1" Spacing="2">
-                                <Label Text="{Binding CustomerName}"
-                                       FontSize="12" FontAttributes="Bold"
-                                       TextColor="{StaticResource TextMain}"/>
-                                <HorizontalStackLayout Spacing="4">
-                                    <Border BackgroundColor="{StaticResource PinkSoft}"
-                                            StrokeShape="RoundRectangle 10"
-                                            Stroke="Transparent"
-                                            Padding="5,1">
-                                        <Label Text="{Binding CustomerTier}"
-                                               Style="{StaticResource BadgeTextStyle}"/>
-                                    </Border>
-                                    <Border BackgroundColor="{StaticResource WarningLight}"
-                                            StrokeShape="RoundRectangle 10"
-                                            Stroke="Transparent"
-                                            Padding="5,1">
-                                        <Label Text="{Binding CustomerPoints}"
-                                               FontSize="9" FontAttributes="Bold"
-                                               TextColor="{StaticResource Warning}"/>
-                                    </Border>
-                                </HorizontalStackLayout>
-                            </VerticalStackLayout>
-                            <Label Grid.Column="2"
-                                   Text="&#xe5cc;" FontFamily="MaterialIcons"
-                                   FontSize="14" TextColor="{StaticResource TextMuted}"
-                                   VerticalOptions="Center"/>
-                        </Grid>
-                    </Border>
-
-                </VerticalStackLayout>
-
-                <!-- ── Items del carrito ── -->
-                <ScrollView Grid.Row="1" Padding="12,4">
-                    <VerticalStackLayout Spacing="6">
-
-                        <CollectionView
-                            ItemsSource="{Binding CartItems}"
-                            SelectionMode="None">
-                            <CollectionView.ItemTemplate>
-                                <DataTemplate x:DataType="m:CartItem">
-                                    <Border Style="{StaticResource CartItemStyle}" Margin="0,0,0,6">
-                                        <Grid ColumnDefinitions="Auto,*,Auto,Auto,Auto">
-
-                                            <!-- Ícono -->
-                                            <Border Grid.Column="0"
-                                                    Style="{StaticResource ProductIconBoxStyle}"
-                                                    Margin="0,0,8,0">
-                                                <Label Text="{Binding Icon}"
-                                                       FontFamily="MaterialIcons"
-                                                       FontSize="18"
-                                                       TextColor="{StaticResource PinkPrimary}"
-                                                       HorizontalOptions="Center"
-                                                       VerticalOptions="Center"/>
-                                            </Border>
-
-                                            <!-- Info -->
-                                            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="1">
-                                                <Label Text="{Binding Name}"
-                                                       FontSize="10" FontAttributes="Bold"
-                                                       TextColor="{StaticResource TextMain}"
-                                                       LineBreakMode="TailTruncation"/>
-                                                <Label Text="{Binding Variant}"
-                                                       Style="{StaticResource CaptionStyle}"/>
-                                            </VerticalStackLayout>
-
-                                            <!-- Qty control -->
-                                            <HorizontalStackLayout Grid.Column="2"
-                                                Spacing="3" VerticalOptions="Center"
-                                                Margin="4,0">
-                                                <Button Text="−"
-                                                        Style="{StaticResource QtyButtonStyle}"
-                                                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:PosViewModel}}, Path=DecreaseQtyCommand}"
-                                                        CommandParameter="{Binding .}"/>
-                                                <Label Text="{Binding Quantity}"
-                                                       FontSize="11" FontAttributes="Bold"
-                                                       TextColor="{StaticResource TextMain}"
-                                                       VerticalOptions="Center"
-                                                       WidthRequest="16"
-                                                       HorizontalTextAlignment="Center"/>
-                                                <Button Text="+"
-                                                        Style="{StaticResource QtyButtonStyle}"
-                                                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:PosViewModel}}, Path=IncreaseQtyCommand}"
-                                                        CommandParameter="{Binding .}"/>
-                                            </HorizontalStackLayout>
-
-                                            <!-- Precio -->
-                                            <Label Grid.Column="3"
-                                                   Text="{Binding TotalFormatted}"
-                                                   Style="{StaticResource PriceStyle}"
-                                                   VerticalOptions="Center"
-                                                   Margin="4,0"/>
-
-                                            <!-- Eliminar -->
-                                            <Button Grid.Column="4"
-                                                    Text="&#xe872;" FontFamily="MaterialIcons"
-                                                    FontSize="14"
-                                                    TextColor="{StaticResource Danger}"
-                                                    BackgroundColor="Transparent"
-                                                    BorderWidth="0"
-                                                    WidthRequest="28" HeightRequest="28"
-                                                    Padding="0"
-                                                    VerticalOptions="Center"
-                                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:PosViewModel}}, Path=RemoveFromCartCommand}"
-                                                    CommandParameter="{Binding .}"/>
-                                        </Grid>
-                                    </Border>
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
-                        </CollectionView>
-
-                        <!-- Nota puntos Peka Club -->
-                        <Border Style="{StaticResource NoteSuccessStyle}"
-                                IsVisible="{Binding HasPointsToEarn}">
-                            <HorizontalStackLayout Spacing="6">
-                                <Label Text="&#xe838;" FontFamily="MaterialIcons"
-                                       FontSize="14" TextColor="{StaticResource Success}"
-                                       VerticalOptions="Center"/>
-                                <Label Text="{Binding PointsEarnedMessage}"
-                                       FontSize="10" TextColor="{StaticResource Success}"
-                                       VerticalOptions="Center"/>
-                            </HorizontalStackLayout>
-                        </Border>
-
                     </VerticalStackLayout>
-                </ScrollView>
+                    <Button Grid.Column="1" Text="&#xe8ad;" FontFamily="MaterialIcons" Style="{StaticResource IconButtonStyle}" Margin="0,0,4,0"/>
+                    <Button Grid.Column="2" Text="&#xe5d4;" FontFamily="MaterialIcons" Style="{StaticResource IconButtonStyle}" Margin="0,0,4,0"/>
+                    <Button Grid.Column="3" Text="&#xe5cd;" FontFamily="MaterialIcons" Style="{StaticResource IconButtonStyle}" Command="{Binding ClearCartCommand}"/>
+                </Grid>
 
-                <!-- ── Totales ── -->
-                <VerticalStackLayout Grid.Row="2" Padding="14,4,14,0" Spacing="4">
-
-                    <BoxView Style="{StaticResource DividerStyle}"/>
-
-                    <Grid ColumnDefinitions="*,Auto">
-                        <Label Grid.Column="0" Text="Subtotal"
-                               Style="{StaticResource CaptionStyle}"/>
-                        <Label Grid.Column="1" Text="{Binding SubtotalFormatted}"
-                               Style="{StaticResource CaptionStyle}"/>
+                <Border Style="{StaticResource CardPinkStyle}">
+                    <Grid ColumnDefinitions="Auto,*,Auto">
+                        <Label Grid.Column="0" Text="&#xe7fd;" FontFamily="MaterialIcons" FontSize="20" TextColor="{StaticResource PinkDark}" VerticalOptions="Center" Margin="0,0,8,0"/>
+                        <VerticalStackLayout Grid.Column="1" Spacing="2">
+                            <Label Text="{Binding CustomerName}" FontSize="12" FontAttributes="Bold" TextColor="{StaticResource TextMain}"/>
+                            <HorizontalStackLayout Spacing="4">
+                                <Border BackgroundColor="{StaticResource PinkSoft}" StrokeShape="RoundRectangle 10" Stroke="Transparent" Padding="5,1">
+                                    <Label Text="{Binding CustomerTier}" Style="{StaticResource BadgeTextStyle}"/>
+                                </Border>
+                                <Border BackgroundColor="{StaticResource WarningLight}" StrokeShape="RoundRectangle 10" Stroke="Transparent" Padding="5,1">
+                                    <Label Text="{Binding CustomerPoints}" FontSize="9" FontAttributes="Bold" TextColor="{StaticResource Warning}"/>
+                                </Border>
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                        <Label Grid.Column="2" Text="&#xe5cc;" FontFamily="MaterialIcons" FontSize="14" TextColor="{StaticResource TextMuted}" VerticalOptions="Center"/>
                     </Grid>
+                </Border>
 
-                    <Grid ColumnDefinitions="*,Auto"
-                          IsVisible="{Binding HasDiscount}">
-                        <Label Grid.Column="0"
-                               Text="{Binding DiscountLabel}"
-                               FontSize="11" TextColor="{StaticResource Danger}"/>
-                        <Label Grid.Column="1"
-                               Text="{Binding DiscountFormatted}"
-                               FontSize="11" TextColor="{StaticResource Danger}"/>
-                    </Grid>
+            </VerticalStackLayout>
 
-                    <Grid ColumnDefinitions="*,Auto">
-                        <Label Grid.Column="0" Text="IVA incluido en precio"
-                               Style="{StaticResource CaptionStyle}"/>
-                        <Label Grid.Column="1" Text="—"
-                               Style="{StaticResource CaptionStyle}"/>
-                    </Grid>
+            <ScrollView Grid.Row="1" Padding="12,4">
+                <VerticalStackLayout Spacing="6">
+                    <CollectionView ItemsSource="{Binding CartItems}" SelectionMode="None">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="m:CartItem">
+                                <Border Style="{StaticResource CartItemStyle}" Margin="0,0,0,6">
+                                    <Grid ColumnDefinitions="Auto,*,Auto,Auto,Auto">
+                                        <Border Grid.Column="0" Style="{StaticResource ProductIconBoxStyle}" Margin="0,0,8,0">
+                                            <Label Text="{Binding Icon}" FontFamily="MaterialIcons" FontSize="18" TextColor="{StaticResource PinkPrimary}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                        </Border>
+                                        <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="1">
+                                            <Label Text="{Binding Name}" FontSize="10" FontAttributes="Bold" TextColor="{StaticResource TextMain}" LineBreakMode="TailTruncation"/>
+                                            <Label Text="{Binding Variant}" Style="{StaticResource CaptionStyle}"/>
+                                        </VerticalStackLayout>
+                                        <HorizontalStackLayout Grid.Column="2" Spacing="3" VerticalOptions="Center" Margin="4,0">
+                                            <Button Text="−" Style="{StaticResource QtyButtonStyle}" Command="{Binding Source={RelativeSource AncestorType={x:Type vm:PosViewModel}}, Path=DecreaseQtyCommand}" CommandParameter="{Binding .}"/>
+                                            <Label Text="{Binding Quantity}" FontSize="11" FontAttributes="Bold" TextColor="{StaticResource TextMain}" VerticalOptions="Center" WidthRequest="16" HorizontalTextAlignment="Center"/>
+                                            <Button Text="+" Style="{StaticResource QtyButtonStyle}" Command="{Binding Source={RelativeSource AncestorType={x:Type vm:PosViewModel}}, Path=IncreaseQtyCommand}" CommandParameter="{Binding .}"/>
+                                        </HorizontalStackLayout>
+                                        <Label Grid.Column="3" Text="{Binding TotalFormatted}" Style="{StaticResource PriceStyle}" VerticalOptions="Center" Margin="4,0"/>
+                                        <Button Grid.Column="4" Text="&#xe872;" FontFamily="MaterialIcons" FontSize="14" TextColor="{StaticResource Danger}" BackgroundColor="Transparent" BorderWidth="0" WidthRequest="28" HeightRequest="28" Padding="0" VerticalOptions="Center" Command="{Binding Source={RelativeSource AncestorType={x:Type vm:PosViewModel}}, Path=RemoveFromCartCommand}" CommandParameter="{Binding .}"/>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
 
-                    <Grid ColumnDefinitions="*,Auto" Margin="0,4,0,0">
-                        <Label Grid.Column="0" Text="Total a pagar"
-                               FontSize="14" FontAttributes="Bold"
-                               TextColor="{StaticResource TextMain}"
-                               VerticalOptions="Center"/>
-                        <Label Grid.Column="1"
-                               Text="{Binding TotalFormatted}"
-                               Style="{StaticResource TotalStyle}"/>
-                    </Grid>
-
+                    <Border Style="{StaticResource NoteSuccessStyle}" IsVisible="{Binding HasPointsToEarn}">
+                        <HorizontalStackLayout Spacing="6">
+                            <Label Text="&#xe838;" FontFamily="MaterialIcons" FontSize="14" TextColor="{StaticResource Success}" VerticalOptions="Center"/>
+                            <Label Text="{Binding PointsEarnedMessage}" FontSize="10" TextColor="{StaticResource Success}" VerticalOptions="Center"/>
+                        </HorizontalStackLayout>
+                    </Border>
                 </VerticalStackLayout>
+            </ScrollView>
 
-                <!-- ── Pago + botones ── -->
-                <VerticalStackLayout Grid.Row="3" Padding="14,10,14,16" Spacing="8">
+            <VerticalStackLayout Grid.Row="2" Padding="14,4,14,0" Spacing="4">
+                <BoxView Style="{StaticResource DividerStyle}"/>
+                <Grid ColumnDefinitions="*,Auto">
+                    <Label Grid.Column="0" Text="Subtotal" Style="{StaticResource CaptionStyle}"/>
+                    <Label Grid.Column="1" Text="{Binding SubtotalFormatted}" Style="{StaticResource CaptionStyle}"/>
+                </Grid>
+                <Grid ColumnDefinitions="*,Auto" IsVisible="{Binding HasDiscount}">
+                    <Label Grid.Column="0" Text="{Binding DiscountLabel}" FontSize="11" TextColor="{StaticResource Danger}"/>
+                    <Label Grid.Column="1" Text="{Binding DiscountFormatted}" FontSize="11" TextColor="{StaticResource Danger}"/>
+                </Grid>
+                <Grid ColumnDefinitions="*,Auto">
+                    <Label Grid.Column="0" Text="IVA incluido en precio" Style="{StaticResource CaptionStyle}"/>
+                    <Label Grid.Column="1" Text="—" Style="{StaticResource CaptionStyle}"/>
+                </Grid>
+                <Grid ColumnDefinitions="*,Auto" Margin="0,4,0,0">
+                    <Label Grid.Column="0" Text="Total a pagar" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource TextMain}" VerticalOptions="Center"/>
+                    <Label Grid.Column="1" Text="{Binding TotalFormatted}" Style="{StaticResource TotalStyle}"/>
+                </Grid>
+            </VerticalStackLayout>
 
-                    <Label Text="Forma de pago" Style="{StaticResource SectionLabelStyle}"/>
+            <VerticalStackLayout Grid.Row="3" Padding="14,10,14,16" Spacing="8">
+                <Label Text="Forma de pago" Style="{StaticResource SectionLabelStyle}"/>
+                <Grid ColumnDefinitions="*,*,*,*" ColumnSpacing="5">
+                    <Border Grid.Column="0" BackgroundColor="{Binding PaymentBgCard}" StrokeShape="RoundRectangle 8" Stroke="{Binding PaymentBorderCard}" StrokeThickness="1" Padding="6,7">
+                        <VerticalStackLayout Spacing="2" HorizontalOptions="Center">
+                            <Label Text="&#xe870;" FontFamily="MaterialIcons" FontSize="16" TextColor="{StaticResource PinkDark}" HorizontalOptions="Center"/>
+                            <Label Text="Tarjeta" FontSize="9" FontAttributes="Bold" TextColor="{StaticResource TextMain}" HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SetPaymentMethodCommand}" CommandParameter="Tarjeta"/>
+                        </Border.GestureRecognizers>
+                    </Border>
+                    <Border Grid.Column="1" BackgroundColor="{StaticResource White}" StrokeShape="RoundRectangle 8" Stroke="{StaticResource BorderSoft}" StrokeThickness="1" Padding="6,7">
+                        <VerticalStackLayout Spacing="2" HorizontalOptions="Center">
+                            <Label Text="&#xe227;" FontFamily="MaterialIcons" FontSize="16" TextColor="{StaticResource TextMuted}" HorizontalOptions="Center"/>
+                            <Label Text="Efectivo" FontSize="9" FontAttributes="Bold" TextColor="{StaticResource TextMuted}" HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SetPaymentMethodCommand}" CommandParameter="Efectivo"/>
+                        </Border.GestureRecognizers>
+                    </Border>
+                    <Border Grid.Column="2" BackgroundColor="{StaticResource White}" StrokeShape="RoundRectangle 8" Stroke="{StaticResource BorderSoft}" StrokeThickness="1" Padding="6,7">
+                        <VerticalStackLayout Spacing="2" HorizontalOptions="Center">
+                            <Label Text="&#xe32c;" FontFamily="MaterialIcons" FontSize="16" TextColor="{StaticResource TextMuted}" HorizontalOptions="Center"/>
+                            <Label Text="CoDi" FontSize="9" FontAttributes="Bold" TextColor="{StaticResource TextMuted}" HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SetPaymentMethodCommand}" CommandParameter="CoDi"/>
+                        </Border.GestureRecognizers>
+                    </Border>
+                    <Border Grid.Column="3" BackgroundColor="{StaticResource White}" StrokeShape="RoundRectangle 8" Stroke="{StaticResource BorderSoft}" StrokeThickness="1" Padding="6,7">
+                        <VerticalStackLayout Spacing="2" HorizontalOptions="Center">
+                            <Label Text="&#xe8a9;" FontFamily="MaterialIcons" FontSize="16" TextColor="{StaticResource TextMuted}" HorizontalOptions="Center"/>
+                            <Label Text="PayPal" FontSize="9" FontAttributes="Bold" TextColor="{StaticResource TextMuted}" HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SetPaymentMethodCommand}" CommandParameter="PayPal"/>
+                        </Border.GestureRecognizers>
+                    </Border>
+                </Grid>
 
-                    <Grid ColumnDefinitions="*,*,*,*" ColumnSpacing="5">
-                        <Border Grid.Column="0"
-                                BackgroundColor="{Binding PaymentBgCard}"
-                                StrokeShape="RoundRectangle 8"
-                                Stroke="{Binding PaymentBorderCard}"
-                                StrokeThickness="1" Padding="6,7">
-                            <VerticalStackLayout Spacing="2" HorizontalOptions="Center">
-                                <Label Text="&#xe870;" FontFamily="MaterialIcons"
-                                       FontSize="16" TextColor="{StaticResource PinkDark}"
-                                       HorizontalOptions="Center"/>
-                                <Label Text="Tarjeta" FontSize="9" FontAttributes="Bold"
-                                       TextColor="{StaticResource TextMain}"
-                                       HorizontalOptions="Center"/>
-                            </VerticalStackLayout>
-                            <Border.GestureRecognizers>
-                                <TapGestureRecognizer
-                                    Command="{Binding SetPaymentMethodCommand}"
-                                    CommandParameter="Tarjeta"/>
-                            </Border.GestureRecognizers>
-                        </Border>
-
-                        <Border Grid.Column="1"
-                                BackgroundColor="{StaticResource White}"
-                                StrokeShape="RoundRectangle 8"
-                                Stroke="{StaticResource BorderSoft}"
-                                StrokeThickness="1" Padding="6,7">
-                            <VerticalStackLayout Spacing="2" HorizontalOptions="Center">
-                                <Label Text="&#xe227;" FontFamily="MaterialIcons"
-                                       FontSize="16" TextColor="{StaticResource TextMuted}"
-                                       HorizontalOptions="Center"/>
-                                <Label Text="Efectivo" FontSize="9" FontAttributes="Bold"
-                                       TextColor="{StaticResource TextMuted}"
-                                       HorizontalOptions="Center"/>
-                            </VerticalStackLayout>
-                            <Border.GestureRecognizers>
-                                <TapGestureRecognizer
-                                    Command="{Binding SetPaymentMethodCommand}"
-                                    CommandParameter="Efectivo"/>
-                            </Border.GestureRecognizers>
-                        </Border>
-
-                        <Border Grid.Column="2"
-                                BackgroundColor="{StaticResource White}"
-                                StrokeShape="RoundRectangle 8"
-                                Stroke="{StaticResource BorderSoft}"
-                                StrokeThickness="1" Padding="6,7">
-                            <VerticalStackLayout Spacing="2" HorizontalOptions="Center">
-                                <Label Text="&#xe32c;" FontFamily="MaterialIcons"
-                                       FontSize="16" TextColor="{StaticResource TextMuted}"
-                                       HorizontalOptions="Center"/>
-                                <Label Text="CoDi" FontSize="9" FontAttributes="Bold"
-                                       TextColor="{StaticResource TextMuted}"
-                                       HorizontalOptions="Center"/>
-                            </VerticalStackLayout>
-                            <Border.GestureRecognizers>
-                                <TapGestureRecognizer
-                                    Command="{Binding SetPaymentMethodCommand}"
-                                    CommandParameter="CoDi"/>
-                            </Border.GestureRecognizers>
-                        </Border>
-
-                        <Border Grid.Column="3"
-                                BackgroundColor="{StaticResource White}"
-                                StrokeShape="RoundRectangle 8"
-                                Stroke="{StaticResource BorderSoft}"
-                                StrokeThickness="1" Padding="6,7">
-                            <VerticalStackLayout Spacing="2" HorizontalOptions="Center">
-                                <Label Text="&#xe8a9;" FontFamily="MaterialIcons"
-                                       FontSize="16" TextColor="{StaticResource TextMuted}"
-                                       HorizontalOptions="Center"/>
-                                <Label Text="PayPal" FontSize="9" FontAttributes="Bold"
-                                       TextColor="{StaticResource TextMuted}"
-                                       HorizontalOptions="Center"/>
-                            </VerticalStackLayout>
-                            <Border.GestureRecognizers>
-                                <TapGestureRecognizer
-                                    Command="{Binding SetPaymentMethodCommand}"
-                                    CommandParameter="PayPal"/>
-                            </Border.GestureRecognizers>
-                        </Border>
-                    </Grid>
-
-                    <!-- Botón cobrar -->
-                    <Button
-                        Text="{Binding ChargeButtonLabel}"
-                        Style="{StaticResource PrimaryButtonStyle}"
-                        HorizontalOptions="Fill"
-                        Command="{Binding ChargeCommand}"
-                        IsEnabled="{Binding CanCharge}"/>
-
-                    <!-- Botón apartado -->
-                    <Button
-                        Text="Convertir en apartado"
-                        Style="{StaticResource SecondaryButtonStyle}"
-                        HorizontalOptions="Fill"
-                        Command="{Binding ConvertToLayawayCommand}"/>
-
-                </VerticalStackLayout>
-
-            </Grid>
+                <Button Text="{Binding ChargeButtonLabel}" Style="{StaticResource PrimaryButtonStyle}" HorizontalOptions="Fill" Command="{Binding ChargeCommand}" IsEnabled="{Binding CanCharge}"/>
+                <Button Text="Convertir en apartado" Style="{StaticResource SecondaryButtonStyle}" HorizontalOptions="Fill" Command="{Binding ConvertToLayawayCommand}"/>
+            </VerticalStackLayout>
 
         </Grid>
-
     </Grid>
-
+    </Grid>
 </ContentPage>
