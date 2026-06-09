@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="ALOBOUTIQUE.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:ALOBOUTIQUE.Views"
+    Shell.NavBarIsVisible="False">
+
+    <ShellContent
+        ContentTemplate="{DataTemplate views:PosPage}"
+        Route="PosPage"/>
+
+    <ShellContent
+        ContentTemplate="{DataTemplate views:CustomersPage}"
+        Route="CustomersPage"/>
+
+</Shell>

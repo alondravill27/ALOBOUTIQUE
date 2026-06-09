@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!-- ═══ PALETA ALO BOUTIQUE ═══ -->
+
+    <!-- Rosa pastel principal -->
+    <Color x:Key="PinkPrimary">#E87AAF</Color>
+    <Color x:Key="PinkDark">#D44F8A</Color>
+    <Color x:Key="PinkDeep">#A33065</Color>
+    <Color x:Key="PinkLight">#F5B3D1</Color>
+    <Color x:Key="PinkSoft">#FAD9E8</Color>
+    <Color x:Key="PinkGhost">#FDF0F5</Color>
+
+    <!-- Rose / blush -->
+    <Color x:Key="RoseLight">#FFE4ED</Color>
+    <Color x:Key="RoseGhost">#FFF5F8</Color>
+
+    <!-- Cremas -->
+    <Color x:Key="CreamBase">#FDFAF8</Color>
+    <Color x:Key="CreamSoft">#FAF5F0</Color>
+    <Color x:Key="CreamDeep">#F5EEE8</Color>
+
+    <!-- Textos -->
+    <Color x:Key="TextMain">#4A2038</Color>
+    <Color x:Key="TextMuted">#9A6080</Color>
+    <Color x:Key="TextHint">#C4A0B4</Color>
+
+    <!-- Bordes -->
+    <Color x:Key="BorderSoft">#F0D8E6</Color>
+    <Color x:Key="BorderMid">#E8C8D8</Color>
+
+    <!-- Semánticos -->
+    <Color x:Key="Success">#2D7A4F</Color>
+    <Color x:Key="SuccessLight">#E8F5EE</Color>
+    <Color x:Key="Warning">#8A5A00</Color>
+    <Color x:Key="WarningLight">#FFF3DC</Color>
+    <Color x:Key="Danger">#C0305A</Color>
+    <Color x:Key="DangerLight">#FFE4ED</Color>
+
+    <!-- Blanco y negro -->
+    <Color x:Key="White">#FFFFFF</Color>
+    <Color x:Key="Black">#000000</Color>
+
+</ResourceDictionary>

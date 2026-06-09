@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ALOBOUTIQUE.MainPage"
+             BackgroundColor="{StaticResource CreamBase}">
+
+    <Grid ColumnDefinitions="52, 186, *, 296">
+
+        <VerticalStackLayout Grid.Column="0" BackgroundColor="#F5ECF1" Padding="0,15" Spacing="12">
+            <Button Text="🛍" Style="{StaticResource IconButtonStyle}" HorizontalOptions="Center"/>
+            <Button Text="📊" Style="{StaticResource IconButtonStyle}" HorizontalOptions="Center"/>
+            <Button Text="⚙️" Style="{StaticResource IconButtonStyle}" HorizontalOptions="Center"/>
+        </VerticalStackLayout>
+
+
+        <Grid Grid.Column="1" RowDefinitions="Auto, *, Auto" BackgroundColor="{StaticResource PinkGhost}" Padding="12,15">
+            <Label Grid.Row="0" Text="ALO BOUTIQUE" Style="{StaticResource BrandStyle}" Margin="4,0,0,15"/>
+
+            <VerticalStackLayout Grid.Row="1" Spacing="4">
+                <Border Style="{StaticResource NavItemActiveStyle}">
+                    <Label Text="Punto de Venta" Style="{StaticResource BodyStyle}" FontAttributes="Bold"/>
+                </Border>
+                <Border Style="{StaticResource NavItemStyle}">
+                    <Label Text="Apartados" Style="{StaticResource BodyStyle}"/>
+                </Border>
+                <Border Style="{StaticResource NavItemStyle}">
+                    <Label Text="Clientes (Peka Club)" Style="{StaticResource BodyStyle}"/>
+                </Border>
+            </VerticalStackLayout>
+
+            <Grid Grid.Row="2" ColumnDefinitions="Auto, *" ColumnSpacing="8" Margin="0,10,0,0">
+                <Border Grid.Column="0" Style="{StaticResource AvatarStyle}"/>
+                <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                    <Label Text="Lizbeth R." Style="{StaticResource CaptionStyle}" FontAttributes="Bold"/>
+                    <Label Text="Cajera Principal" Style="{StaticResource HintStyle}"/>
+                </VerticalStackLayout>
+            </Grid>
+        </Grid>
+
+
+        <Grid Grid.Column="2" RowDefinitions="Auto, Auto, *, Auto" BackgroundColor="{StaticResource CreamSoft}" Padding="20,15">
+
+            <Border Grid.Row="0" Style="{StaticResource CardStyle}" HeightRequest="40" Padding="10,0">
+                <Grid ColumnDefinitions="Auto, *">
+                    <Label Text="🔍" VerticalOptions="Center" Margin="0,0,8,0"/>
+                    <Entry Grid.Column="1" Placeholder="Buscar prenda por nombre, código o tag..." Style="{StaticResource SearchEntryStyle}"/>
+                </Grid>
+            </Border>
+
+            <HorizontalStackLayout Grid.Row="1" Spacing="6" Margin="0,15,0,10">
+                <Button Text="Todo" Style="{StaticResource FilterChipActiveStyle}"/>
+                <Button Text="Vestidos" Style="{StaticResource FilterChipStyle}"/>
+                <Button Text="Blusas" Style="{StaticResource FilterChipStyle}"/>
+                <Button Text="Sets" Style="{StaticResource FilterChipStyle}"/>
+            </HorizontalStackLayout>
+
+            <ScrollView Grid.Row="2" VerticalScrollBarVisibility="Never">
+                <FlexLayout Wrap="Wrap" JustifyContent="Start" Direction="Row">
+
+                    <Border Style="{StaticResource CardStyle}" WidthRequest="180" HeightRequest="240" Margin="0,0,12,12">
+                        <Grid RowDefinitions="130, *">
+                            <BoxView Grid.Row="0" Color="{StaticResource PinkGhost}"/>
+                            <VerticalStackLayout Grid.Row="1" Padding="10,8">
+                                <Label Text="VESTIDOS" Style="{StaticResource SectionLabelStyle}"/>
+                                <Label Text="Vestido Midi Seda" Style="{StaticResource BodyStyle}" FontAttributes="Bold" LineBreakMode="TailTruncation"/>
+                                <Label Text="$1,250" Style="{StaticResource PriceStyle}" Margin="0,4,0,0"/>
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Border>
+
+                </FlexLayout>
+            </ScrollView>
+
+            <HorizontalStackLayout Grid.Row="3" Spacing="6" Margin="0,10,0,0">
+                <Ellipse Style="{StaticResource StatusDotStyle}"/>
+                <Label Text="Servidor Local Conectado · Caja Abierta" Style="{StaticResource CaptionStyle}"/>
+            </HorizontalStackLayout>
+        </Grid>
+
+
+        <Grid Grid.Column="3" RowDefinitions="Auto, *, Auto, Auto" BackgroundColor="{StaticResource White}" Padding="15">
+
+            <Grid Grid.Row="0" ColumnDefinitions="*, *, *" ColumnSpacing="4" Margin="0,0,0,15">
+                <Button Grid.Column="0" Text="Venta" Style="{StaticResource TabButtonActiveStyle}"/>
+                <Button Grid.Column="1" Text="Apartado" Style="{StaticResource TabButtonStyle}"/>
+                <Button Grid.Column="2" Text="Envío" Style="{StaticResource TabButtonStyle}"/>
+            </Grid>
+
+            <ScrollView Grid.Row="1" VerticalScrollBarVisibility="Never">
+                <VerticalStackLayout Spacing="6">
+
+                    <Border Style="{StaticResource CartItemStyle}">
+                        <Grid ColumnDefinitions="Auto, *, Auto" ColumnSpacing="8">
+                            <Border Grid.Column="0" Style="{StaticResource ProductIconBoxStyle}"/>
+                            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                <Label Text="Vestido Midi Seda" Style="{StaticResource BodyStyle}" FontAttributes="Bold" FontSize="12"/>
+                                <Label Text="Talla S · Rosa" Style="{StaticResource CaptionStyle}" FontSize="10"/>
+                            </VerticalStackLayout>
+                            <Label Grid.Column="2" Text="$1,250" Style="{StaticResource PriceStyle}" FontSize="12" VerticalOptions="Center"/>
+                        </Grid>
+                    </Border>
+
+                </VerticalStackLayout>
+            </ScrollView>
+
+            <VerticalStackLayout Grid.Row="2" Spacing="6" Margin="0,15">
+                <BoxView Style="{StaticResource DividerStyle}"/>
+                <Grid ColumnDefinitions="*, Auto">
+                    <Label Text="Subtotal" Style="{StaticResource CaptionStyle}"/>
+                    <Label Grid.Column="1" Text="$1,250.00" Style="{StaticResource BodyStyle}"/>
+                </Grid>
+                <Grid ColumnDefinitions="*, Auto">
+                    <Label Text="Total a Pagar" Style="{StaticResource TotalStyle}"/>
+                    <Label Grid.Column="1" Text="$1,250.00" Style="{StaticResource TotalStyle}" TextColor="{StaticResource PinkDark}"/>
+                </Grid>
+            </VerticalStackLayout>
+
+            <Button Grid.Row="3" Text="COBRAR (F12)" Style="{StaticResource PrimaryButtonStyle}" VerticalOptions="End"/>
+        </Grid>
+
+    </Grid>
+</ContentPage>
