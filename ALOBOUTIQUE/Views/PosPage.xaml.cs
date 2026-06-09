@@ -13,3 +13,4 @@ public partial class PosPage : ContentPage
         await Shell.Current.GoToAsync("//CustomersPage");
     }
 }
+////
